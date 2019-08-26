@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "remove */obj, */bin",
+            "command": "rm",
+            "type": "shell",
+            "args": [
+                "-rf",
+                "*/obj",
+                "*/bin"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
