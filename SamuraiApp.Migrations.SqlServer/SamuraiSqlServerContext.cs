@@ -1,7 +1,7 @@
 using SamuraiApp.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace SamuraiApp.Migrations.SqlLite
+namespace SamuraiApp.Migrations.SqlServer
 {
     public class SamuraiSqlServerContext : SamuraiContext
     {
