@@ -12,6 +12,7 @@ namespace SamuraiApp.Migrations.SqlLite
                 options => {
                     options.MaxBatchSize(100);
                 });
+            optionsBuilder.EnableSensitiveDataLogging();
             base.OnConfiguring(optionsBuilder);
         }
     }

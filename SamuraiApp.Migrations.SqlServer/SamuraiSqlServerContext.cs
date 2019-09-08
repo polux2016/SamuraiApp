@@ -8,7 +8,7 @@ namespace SamuraiApp.Migrations.SqlServer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server = .; Database = SamuraiData; "
-                + "User Id = sa; Password=reallyStrongPwd123;");
+                + "User Id = sa; Password=yourStrong(!)Password;");
             base.OnConfiguring(optionsBuilder);
         }
     }
