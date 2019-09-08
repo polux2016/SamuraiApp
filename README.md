@@ -25,4 +25,8 @@ dotnet ef migrations add JoinTables -v --project SamuraiApp.Migrations.SqlServer
 
 **Init Databases**
 
-dotnet ef database update --project SamuraiApp.Migrations
+dotnet ef database update --project SamuraiApp.Migrations.SqlLite
+dotnet ef database update --project SamuraiApp.Migrations.SqlServer
+
+**SQL Server in docker**
+docker run -d --name sql_server_demo -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=reallyStrongPwd123' -p 1433:1433 microsoft/mssql-server-linux

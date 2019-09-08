@@ -20,6 +20,17 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "run_ui",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "run",
+                "--project",
+                "SamuraiApp.UI"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "remove */obj, */bin",
             "command": "rm",
             "type": "shell",

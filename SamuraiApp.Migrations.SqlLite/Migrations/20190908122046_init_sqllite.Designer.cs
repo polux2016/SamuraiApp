@@ -9,8 +9,8 @@ using SamuraiApp.Migrations.SqlLite;
 namespace SamuraiApp.Migrations.SqlLite.Migrations
 {
     [DbContext(typeof(SamuraiSqlLiteContext))]
-    [Migration("20190827150747_RemoveReqiredColumnsAndMore")]
-    partial class RemoveReqiredColumnsAndMore
+    [Migration("20190908122046_init_sqllite")]
+    partial class init_sqllite
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

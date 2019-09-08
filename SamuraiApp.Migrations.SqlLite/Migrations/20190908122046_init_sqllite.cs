@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SamuraiApp.Migrations.SqlLite.Migrations
 {
-    public partial class JoinTables : Migration
+    public partial class init_sqllite : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
