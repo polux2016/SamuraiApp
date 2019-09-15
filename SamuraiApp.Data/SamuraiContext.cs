@@ -12,9 +12,10 @@ namespace SamuraiApp.Data
         public DbSet<Battle> Battles { get; set; }
         public DbSet<Quote> Quotes { get; set; }
 
-        public static readonly LoggerFactory MyLoggerFactory = new LoggerFactory(new[] {
-                new ConsoleLoggerProvider((_, __) => true, true) 
-            });
+        public static readonly ILoggerFactory MyLoggerFactory = new LoggerFactory(new[] {
+              new ConsoleLoggerProvider((_, __) => true, true)
+        });
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SamuraiBattle>()
@@ -22,7 +23,8 @@ namespace SamuraiApp.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLoggerFactory(MyLoggerFactory);
+            optionsBuilder.UseLoggerFactory(MyLoggerFactory)
+                .EnableSensitiveDataLogging();
             base.OnConfiguring(optionsBuilder);
         }
     }
