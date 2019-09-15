@@ -1,14 +1,21 @@
 using System;
 using System.Linq;
 using SamuraiApp.Domain;
+using SamuraiApp.Data;
 using Microsoft.EntityFrameworkCore;
 using SamuraiApp.Migrations.SqlLite;
 using SamuraiApp.Migrations.SqlServer;
+using System.Collections.Generic;
 
 namespace SamuraiApp.UI
 {
     public class CreateAndSelectDataExamples
     {
+        public SamuraiSqlServerContext Context { get; }
+        public CreateAndSelectDataExamples()
+        {
+            Context = new SamuraiSqlServerContext();
+        }
         public  void RunStoredProcedure()
         {
             using(var context = new SamuraiSqlServerContext())
@@ -22,6 +29,43 @@ namespace SamuraiApp.UI
                 samurai.ForEach(s => Console.WriteLine(s.Name));
                 Console.WriteLine();
             }
+        }
+
+        internal void InsertOneToOneRelation()
+        {
+            var samurai = new Samurai { Name = "One to one samurai" };
+            samurai.SecretIdentity = new SecretIdentity { RealName = "Julia" };
+            Context.Add(samurai);
+            Context.SaveChanges();
+        }
+
+        internal void InsertNewItemsIntoPkgGraph()
+        {
+            var samurai = new Samurai
+            {
+                Name = "Big Boy V 3",
+                Quotes = new List<Quote>
+                {
+                    new Quote {Text = "Big bada boom 4!"},
+                    new Quote {Text = "Big bada boom 5!"}
+                }
+            };
+            Context.Samurais.Add(samurai);
+            Context.SaveChanges();
+        }
+
+        internal void InsertNewPkgGraph()
+        {
+            var samurai = new Samurai
+            {
+                Name = "Big Boy",
+                Quotes = new List<Quote>
+                {
+                    new Quote {Text = "Big bada boom!"}
+                }
+            };
+            Context.Samurais.Add(samurai);
+            Context.SaveChanges();
         }
 
         public  void RunFunctionProcedure()

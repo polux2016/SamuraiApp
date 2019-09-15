@@ -1,11 +1,13 @@
-﻿namespace SamuraiApp.UI
+﻿using SamuraiApp.Migrations.SqlServer;
+
+namespace SamuraiApp.UI
 {
     class Program
     {
         static void Main(string[] args)
         {
-            /* 
             CreateAndSelectDataExamples manager = new CreateAndSelectDataExamples();
+            /* 
             manager.InsertSamurai();
             manager.SimpleSamuraiQuery();
             manager.MoreSimpleSamuraiQuery();
@@ -15,6 +17,10 @@
             manager.RunStoredProcedure();
             manager.RunFunctionProcedure();
             */
+            manager.Context.Database.EnsureCreated();
+            //manager.InsertNewPkgGraph();
+            //manager.InsertNewItemsIntoPkgGraph();
+            manager.InsertOneToOneRelation();
         }
     }
 }
