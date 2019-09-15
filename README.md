@@ -30,6 +30,14 @@ docker build -t "local/sqlserver:samurai" -f "./SamuraiApp.Migrations.SqlServer/
 ``` bash
 docker run -p 1433:1433 -d "local/sqlserver:samurai"
 ```
+- Find ran containers
+``` bash
+docker container ls --filter 'ancestor=local/sqlserver:samurai'
+```
+- Clear all run containers
+``` bash
+docker rm $(docker container ls -f 'ancestor=local/sqlserver:samurai' -q) -f
+```
 
 **First Migrations for Databases**
 ``` bash
