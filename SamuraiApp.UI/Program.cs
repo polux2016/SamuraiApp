@@ -1,4 +1,5 @@
-﻿using SamuraiApp.Migrations.SqlServer;
+﻿using System;
+using SamuraiApp.Migrations.SqlServer;
 
 namespace SamuraiApp.UI
 {
@@ -7,20 +8,32 @@ namespace SamuraiApp.UI
         static void Main(string[] args)
         {
             CreateAndSelectDataExamples manager = new CreateAndSelectDataExamples();
-            /* 
-            manager.InsertSamurai();
-            manager.SimpleSamuraiQuery();
-            manager.MoreSimpleSamuraiQuery();
-            manager.RetriveAndUpdateSamurai();
-            manager.DeletingTheObject();
-            manager.RowSqlQuery();
-            manager.RunStoredProcedure();
-            manager.RunFunctionProcedure();
-            */
-            manager.Context.Database.EnsureCreated();
+            int count; 
+            
+            //manager.Context.Database.EnsureCreated();
+            //manager.DeleteTestData();
+            //manager.InitTestData();
+            //manager.Context.SaveChanges();
+
+            //manager.InsertSamurai();
+            //manager.SimpleSamuraiQuery();
+            //manager.MoreSimpleSamuraiQuery();
+            //manager.RetriveAndUpdateSamurai();
+            //manager.DeletingTheObject();
+            //manager.RowSqlQuery();
+            //manager.RunStoredProcedure();
+            //manager.RunFunctionProcedure();
             //manager.InsertNewPkgGraph();
             //manager.InsertNewItemsIntoPkgGraph();
-            manager.InsertOneToOneRelation();
+            //manager.InsertOneToOneRelation();
+            //manager.EagerLoadingWithInclude();
+            //manager.EagerLoadManyToManyAkaChildrenGrandChildren();
+            //manager.AnonymousTypeVisProjections();
+            //manager.AnonymousTypeVisProjectionsWithRelated();
+            //manager.RelatedObjectsFixUp();
+            //manager.EagerLoadViaProjections();
+            //manager.ExplicitLoad();
+            manager.ExplicitLoadWithChildFilter();
         }
     }
 }

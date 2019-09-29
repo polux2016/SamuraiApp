@@ -12,6 +12,22 @@ namespace SamuraiApp.UI
     public class CreateAndSelectDataExamples
     {
         public SamuraiSqlServerContext Context { get; }
+
+        internal void DeleteTestData()
+        {
+            Context.RemoveRange(Context.Quotes);
+            Context.RemoveRange(Context.Battles);
+            Context.RemoveRange(Context.Samurais);
+        }
+
+        internal void InitTestData()
+        {
+            InsertSamurai();
+            InsertOneToOneRelation();
+            InsertNewPkgGraph();
+            InsertOneToOneRelation();
+        }
+
         public CreateAndSelectDataExamples()
         {
             Context = new SamuraiSqlServerContext();
@@ -29,6 +45,78 @@ namespace SamuraiApp.UI
                 samurai.ForEach(s => Console.WriteLine(s.Name));
                 Console.WriteLine();
             }
+        }
+
+        internal void ExplicitLoad()
+        {
+            var samurai = Context.Samurais.Find(3);
+            Context.Entry(samurai).Collection(s => s.Quotes).Load();
+            Context.Entry(samurai).Reference(s => s.SecretIdentity).Load();
+        }
+
+        internal void ExplicitLoadWithChildFilter()
+        {
+            var samurai = Context.Samurais.Find(3);
+            Context.Entry(samurai).Collection(s => s.Quotes)
+                .Query()
+                .Where(q => 1 == 1)
+                .Load();
+            Context.Entry(samurai).Reference(s => s.SecretIdentity)
+                .Query()
+                .Where(s => s.Id == 1)
+                .Load();
+        }
+
+        internal void EagerLoadViaProjections()
+        {
+            var samurais = Context.Samurais
+                .Select(s => new {Samurai = s, Quotes = s.Quotes})
+                .ToList();
+            var samurais_v2 = Context.Samurais
+                .ToList();
+            var samurais_v3 = Context.Samurais
+                .Select(s => new {Samurai_v3 = s, Quotes_v3 = s.Quotes})
+                .ToList();
+        }
+
+        internal void AnonymousTypeVisProjectionsWithRelated()
+        {
+            var res = Context.Samurais
+                .Select(s => new {
+                    s.Id,
+                    s.SecretIdentity.RealName,
+                    QuoteCount = s.Quotes.Count()
+                })
+                .ToList();
+        }
+
+        internal void RelatedObjectsFixUp()
+        {
+            var samurai = Context.Samurais.Find(3);
+            var quotes = Context.Quotes.Where(q => q.Samurai.Id == samurai.Id).ToList();
+        }
+
+        internal void AnonymousTypeVisProjections()
+        {
+            Context.Quotes
+                .Select(q => new {
+                    q.Id,
+                    q.Text
+                })
+                .ToList();
+        }
+
+        internal void EagerLoadManyToManyAkaChildrenGrandChildren()
+        {
+            var res = Context.Samurais
+                .Include(s => s.SamuraiBattle)
+                .ThenInclude(sb => sb.Battle)
+                .ToList();
+        }
+
+        internal void EagerLoadingWithInclude()
+        {
+            var res = Context.Samurais.Include(s => s.Quotes).ToList();
         }
 
         internal void InsertOneToOneRelation()
