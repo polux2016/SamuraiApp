@@ -8,7 +8,6 @@ namespace SamuraiApp.UI
         static void Main(string[] args)
         {
             CreateAndSelectDataExamples manager = new CreateAndSelectDataExamples();
-            int count; 
             
             //manager.Context.Database.EnsureCreated();
             //manager.DeleteTestData();
