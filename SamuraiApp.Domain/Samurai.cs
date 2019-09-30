@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SamuraiApp.Domain
 {
-    public class Samurai
+    public class Samurai: ClientChangeTracker
     {
         public Samurai() => Quotes = new List<Quote>();
 

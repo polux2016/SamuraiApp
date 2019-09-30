@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SamuraiApp.Domain
 {
-    public class SecretIdentity
+    public class SecretIdentity: ClientChangeTracker
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

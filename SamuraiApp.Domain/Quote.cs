@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SamuraiApp.Domain
 {
-    public class Quote
+    public class Quote: ClientChangeTracker
     {
         [Key]
         public int Id { get; set; }
